@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'freeeventfinder', # you will need to create this db
-        'USER': '', # enter your user name here
-        'PASSWORD': '',
+        'USER': 'postgres', # enter your user name here
+        'PASSWORD': 'poppies8',
         'HOST': 'localhost',
         'PORT': '5432',
     }
