@@ -2,6 +2,15 @@
 
 {% block content %}
 
-You should put the user's account information and upcoming events here.
+<h3>Your Info</h3>
+<form action="{% url 'eventFinderApp:account' %}" method="post">
+  {% csrf_token %}
+  {{ accountform.as_p }}
+  <input type="submit" value="Save Changes">
+</form>
+
+<h3>Your Upcoming Events</h3>
+
+<h3>Your Past Events</h3>
 
 {% endblock %}

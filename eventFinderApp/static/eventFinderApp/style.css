@@ -64,3 +64,19 @@ a {
 .details-box a:hover {
     text-decoration: underline;
 }
+
+.titles {
+    width: 100%;
+    background-color: #483D3F;
+    overflow: auto;
+}
+
+.titles a {
+    float: left;
+    padding: 12px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    width: 20%;
+    text-align: center;
+}

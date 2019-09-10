@@ -1,14 +1,24 @@
 from django.forms import ModelForm
-from .models import Event, Category
+from .models import Event, Category, Account
 
 class EventForm(ModelForm):
   class Meta:
       model = Event
-      fields = {
+      fields = [
           'title',
           'location',
           'venue',
           'start_time',
           'end_time',
           'categories',
-      }
+      ]
+
+
+class AccountForm(ModelForm):
+  class Meta:
+      model = Account
+      fields = [
+          'firstname',
+          'surname',
+          'email'
+      ]
