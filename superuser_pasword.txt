@@ -1,3 +1,11 @@
 superuser username: beverly
 Email address: bo_limegreen@hotmail.com
 password: poppies8
+
+In windows:
+To access superuser for psql:
+type 'psql -U postgress'
+
+new superuser:beverly
+Email address: beverlyohzhaolan@gmail.com
+password: poppies8

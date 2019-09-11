@@ -9,7 +9,7 @@ class Event(models.Model):
     venue = models.CharField(max_length=200)
     host = models.CharField(max_length=50)
     categories = models.ManyToManyField('Category', related_name= 'events')
-    attendees = models.ManyToManyField(User, related_name = 'attending_events')
+    #attendees = models.ManyToManyField(User, related_name = 'attending_events')
 
     def __str__(self):
         return self.title

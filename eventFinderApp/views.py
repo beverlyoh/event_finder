@@ -35,9 +35,6 @@ def add_event(request):
         # check whether it's valid:
         if eventform.is_valid():
             # process the data in form.cleaned_data as required
-            # ....
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
             eventform.save()
             return HttpResponseRedirect(reverse('eventFinderApp:index'))
         return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})
