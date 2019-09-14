@@ -7,7 +7,7 @@ class Event(models.Model):
     start_time = models.DateTimeField('start time and date')
     end_time = models.DateTimeField('end time and date')
     venue = models.CharField(max_length=200)
-    host = models.CharField(max_length=50)
+    host = models.CharField(max_length=200) #models.ForeignKey(Host, on_delete=models.CASCADE)
     categories = models.ManyToManyField('Category', related_name= 'events')
     #attendees = models.ManyToManyField(User, related_name = 'attending_events')
 
