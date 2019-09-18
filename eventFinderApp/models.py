@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+from django.urls import reverse 
 from django.contrib.auth.models import User
 
 class Event(models.Model):
@@ -7,12 +9,15 @@ class Event(models.Model):
     start_time = models.DateTimeField('start time and date')
     end_time = models.DateTimeField('end time and date')
     venue = models.CharField(max_length=200)
-    host = models.CharField(max_length=200) #models.ForeignKey(Host, on_delete=models.CASCADE)
+    host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.DO_NOTHING, null = "True") # null: can have event with host
     categories = models.ManyToManyField('Category', related_name= 'events')
     #attendees = models.ManyToManyField(User, related_name = 'attending_events')
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("eventFinderApp:event", kwargs={"pk": self.pk})
 
 class Category(models.Model):
     name = models.CharField(max_length=50)

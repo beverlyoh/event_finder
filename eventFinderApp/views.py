@@ -1,8 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.views import generic
-from django.shortcuts import render
-from .models import Event, Account
+from django.views import generic, View
+from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from .models import Event, Account, Category
 from .forms import EventForm, AccountForm
 
 class IndexView(generic.ListView):
@@ -26,19 +28,20 @@ def account(request):
     accountform = AccountForm()
     return render(request, 'eventFinderApp/account.html', {'accountform': accountform})
 
-def add_event(request):
-    
-    # if this is a POST request, process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        eventform = EventForm(request.POST)
-        # check whether it's valid:
-        if eventform.is_valid():
-            # process the data in form.cleaned_data as required
-            eventform.save()
-            return HttpResponseRedirect(reverse('eventFinderApp:index'))
-        return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        eventform = EventForm()
-        return render(request, 'eventFinderApp/add-event.html', {'eventform': eventform})    
+class CreateEventView(LoginRequiredMixin, CreateView):
+   template_name = 'eventFinderApp/add-event.html'
+   form_class = EventForm
+   login_url = '/users/login/'
+   def form_valid(self, form):
+       form.instance.host = self.request.user
+       print(form.cleaned_data)
+       return super().form_valid(form)
+
+# class EditEventView(LoginRequiredMixin, CreateView):
+#    template_name = 'eventFinderApp/edit-event.html'
+#    form_class = EventForm
+#    login_url = '/users/login/'
+#    def form_valid(self, form):
+#        form.instance.host = self.request.user
+#        print(form.cleaned_data)
+#        return super().form_valid(form)

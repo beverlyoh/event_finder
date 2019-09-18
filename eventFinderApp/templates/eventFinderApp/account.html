@@ -6,8 +6,9 @@
 <form action="{% url 'eventFinderApp:account' %}" method="post">
   {% csrf_token %}
   {{ accountform.as_p }}
-  <input type="submit" value="Save Changes">
+  <input type="submit" value="Save">
 </form>
+
 
 <h3>Your Upcoming Events</h3>
 
