@@ -9,8 +9,8 @@ class Event(models.Model):
     start_time = models.DateTimeField('start time and date')
     end_time = models.DateTimeField('end time and date')
     venue = models.CharField(max_length=200)
-    host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.DO_NOTHING, null = "True") # null: can have event with host
     categories = models.ManyToManyField('Category', related_name= 'events')
+    host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.DO_NOTHING, null = "True") # null: can have event with host
     #attendees = models.ManyToManyField(User, related_name = 'attending_events')
 
     def __str__(self):
