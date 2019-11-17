@@ -1,17 +1,29 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 
 {% block content %}
+<img src="{{ event.event_image.url }}" class="event-page-image">
+<h2>{{ event.title }}</h2>
+<h6><span class=""><b>HOSTED BY:</b></span> {{ event.host.first_name }} {{ event.host.last_name }}</h3>
 
-<h2>{{ event.name }}</h2>
-<p> Event Category:
- {% for cat in event.categories.all %}
-       {{ cat.name }}</p>
-       {% endfor %}
-<p>Location: {{ event.location }}</p>
+<p>{{ event.location }}</p>
 <p>Venue: {{ event.venue }}</p>
-<p>Host: {{ event.host.username }}</p>
+<p>Event Categories:</p>
+    {% for cat in event.categories.all %}
+        <p> {{ cat.name }}</p>
+        {% endfor %}
 <p>Start Time: {{ event.start_time }}</p>
 <p>End Time: {{ event.end_time }}</p>
+<p>Description: {{ event.event_description }}</p>
+<!-- <p>Short description: {{ event.short_description }}</p> -->
+
+{% if user.is_authenticated %}
+   {% if user.pk == event.host.pk %}
+       <a href="{% url 'eventFinderApp:editevent' event.id %}"><button id="editevent">+ Edit details</button></a>
+   {% else %}
+       <p>Contact {{event.host.username}} if you would like to change event details</p>
+       {% endif %}
+{% else %}
+   <p><a href="{% url 'login' %}">Login to edit this event</a></p>
+{% endif %}
 
 {% endblock %}

@@ -50,9 +50,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+     'django_filters',
     'rest_framework',
     'rest_framework.authtoken'
 ]
+
+CONTENT_TYPES = ['image', 'video']
+# 1MB - 1048576
+# 2MB - 2097152
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+MAX_UPLOAD_SIZE = "2097152"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -166,6 +180,7 @@ if 'S3_BUCKET' in os.environ:
     # define the AWS S3 bucket to use for storage
     AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
     AWS_DEFAULT_ACL = 'public-read'
+    
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'eventFinderApp:index'

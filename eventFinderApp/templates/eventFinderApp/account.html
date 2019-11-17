@@ -2,16 +2,49 @@
 
 {% block content %}
 
-<h3>Your Info</h3>
-<form action="{% url 'eventFinderApp:account' %}" method="post">
-  {% csrf_token %}
-  {{ accountform.as_p }}
-  <input type="submit" value="Save">
-</form>
+<h3>Profile</h3>
+<p>Username: {{ user.username }}</p>
+<p>First Name: {{ user.first_name }}</p>
+<p>Last Name: {{ user.last_name }}</p>
+<p>Email: {{ user.email }}</p>
 
+{% if user.is_authenticated %}
+        <a href="{% url 'users:editprofile' %}"><button id="editprofile">+ Edit details</button></a>
+{% else %}
+    <p><a href="{% url 'login' %}">Login to edit this profile</a></p>
+{% endif %}
 
-<h3>Your Upcoming Events</h3>
+<h3>Your events:</h3>
 
-<h3>Your Past Events</h3>
+<div class = "container">
+        <div class ="row">
+            {% if events_list %}
+                {% for event in events_list %}
+                    {% if event.is_past_event %}
+                    {% else %}
+                        {% include "./detailsBox.html" with event=event %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>You're not hosting any events.</p>
+            {% endif %}
+        </div>
+    </div>
+
+<h3>Your past events:</h3>
+<div class = "container">
+        <div class ="row">
+            {% if events_list %}
+                {% for event in events_list %}
+                    {% if event.is_past_event %}
+                        {% include "./detailsBox.html" with event=event %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>You don't have any past events.</p>
+            {% endif %}
+        </div>
+</div>
+
 
 {% endblock %}
