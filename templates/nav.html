@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
-    <a href="{% url 'eventFinderApp:index' %}"><img src="/static/logo_bee2.jpg" class="navbar-brand" href="{% url 'eventFinderApp:index' %}" style="max-width: 200px;"></a>
+    <a href="{% url 'eventFinderApp:index' %}"><img src="/static/logo_bee.jpg" class="navbar-brand" href="{% url 'eventFinderApp:index' %}" style="max-width: 200px;">
+        <h7>FreeBee</h7></a>
         {% if user.is_authenticated %}
             <div class="btn-group">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi, {{ user.first_name }}</button>
