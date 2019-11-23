@@ -3,9 +3,9 @@
 {% block content %}
 
 <h3>Profile</h3>
-<p>Username: {{ user.username }}</p>
 <p>First Name: {{ user.first_name }}</p>
 <p>Last Name: {{ user.last_name }}</p>
+<p>Username: {{ user.username }}</p>
 <p>Email: {{ user.email }}</p>
 
 {% if user.is_authenticated %}

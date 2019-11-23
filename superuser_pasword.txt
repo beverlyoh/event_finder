@@ -2,6 +2,7 @@ superuser username: beverly
 Email address: bo_limegreen@hotmail.com
 password: poppies8
 
-new superuser:bo_li
-Email address: bo_limegreen@hotmail.com
+new superuser:beverly
+Email address: beverlyohzhaolan@gmail.com
 password: poppies8
+
