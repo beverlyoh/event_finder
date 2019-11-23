@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from eventFinderApp import viewsets
+from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
+from eventFinderApp import viewsets
 from rest_framework.authtoken import views
 from users import viewsets as UserViewsets
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
-router.register(r'events', viewsets.EventViewSet) # get the viewset
+router.register(r'events', viewsets.EventViewSet)
 router.register(r'users', UserViewsets.CustomUserViewSet)
 
 urlpatterns = [
@@ -30,5 +33,10 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('users/', include('users.urls')),
     path('api/', include(router.urls)),
-    path(r'api-auth-token/', views.obtain_auth_token)
+    path(r'api-auth-token/', views.obtain_auth_token),
+    path('jsi18n', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

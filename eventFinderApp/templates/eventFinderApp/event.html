@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<img src="{{ event.event_image.url }}" class="event-page-image">
+<img src="{{ event.event_image.url }}">
 <h2>{{ event.title }}</h2>
-<h6><span class=""><b>HOSTED BY:</b></span> {{ event.host.first_name }} {{ event.host.last_name }}</h3>
+<h3>Hosted by: {{ event.host.first_name }} {{ event.host.last_name }}</h3>
 
 <p>{{ event.location }}</p>
 <p>Venue: {{ event.venue }}</p>
@@ -11,8 +11,8 @@
     {% for cat in event.categories.all %}
         <p> {{ cat.name }}</p>
         {% endfor %}
-<p>Start Time: {{ event.start_time }}</p>
-<p>End Time: {{ event.end_time }}</p>
+<p>Starts at: {{ event.start_time }}</p>
+<p>Ends at: {{ event.end_time }}</p>
 <p>Description: {{ event.event_description }}</p>
 <!-- <p>Short description: {{ event.short_description }}</p> -->
 

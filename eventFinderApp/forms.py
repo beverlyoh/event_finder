@@ -1,9 +1,9 @@
 from django.forms import ModelForm, SplitDateTimeField, ValidationError
-from .models import Event, Category, Account
 from django.contrib.admin import widgets
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from .models import Event, Category, Account
 
 class EventForm(ModelForm):
     start_time = SplitDateTimeField(widget=widgets.AdminSplitDateTime())
@@ -31,11 +31,13 @@ class EventForm(ModelForm):
         return content
 
 
+
+
 class AccountForm(ModelForm):
-  class Meta:
-      model = Account
-      fields = [
-          'first_name',
-          'surname',
-          'email'
-      ]
+    class Meta:
+        model = Account
+        fields = [
+            'first_name',
+            'last_name',
+            'email'
+        ]

@@ -22,8 +22,6 @@ class Event(models.Model):
     def is_past_event(self):
         return self.start_time < datetime.now(tz = timezone.utc)   
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
@@ -32,5 +30,5 @@ class Category(models.Model):
 
 class Account(models.Model):
     first_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     email = models.EmailField()

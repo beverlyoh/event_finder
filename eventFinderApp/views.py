@@ -22,7 +22,6 @@ class IndexView(generic.ListView):
         context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-
 class AccountView(generic.ListView):
     template_name = 'eventFinderApp/account.html'
     context_object_name = 'events_list'
